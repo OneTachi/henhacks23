@@ -1,7 +1,9 @@
 package ow.henhacks23;
 
-public class Node {
+public class Node
+{
 
+    public Node prev = null;
 
     public byte visited = 0;
     public int value = 1000; // == Value
@@ -17,6 +19,7 @@ public class Node {
     {
         connections = null;
     }
+
     public Node lookAtConnections()
     {
         Node min = null;
@@ -28,13 +31,20 @@ public class Node {
                     if (con.node.value > value + con.distance)
                     {
                         con.node.value = value + con.distance;
+                        con.node.prev = this;
                     }
                     if (min == null || min.value > con.node.value)
                     {
                         min = con.node;
                     }
                 }
-        }
+            }
         return min;
+    }
+
+    @Override
+    public String toString()
+    {
+        return value + " ";
     }
 }

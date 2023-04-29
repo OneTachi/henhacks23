@@ -15,7 +15,7 @@ public class Algorithm
         this.network = new HashSet<>(Arrays.stream(network).toList());
     }
 
-    public void algorithm(Node endpoint)
+    public ArrayList<Node> algorithm(Node endpoint)
     {
         HashSet<Node> net = new HashSet<>(network);
         startingNode.value = 0;
@@ -39,6 +39,14 @@ public class Algorithm
 
         }
 
+        ArrayList<Node> path = new ArrayList<Node>();
+        Node curr = endpoint;
+        while (curr != null)
+        {
+            path.add(curr);
+            curr = curr.prev;
+        }
+        return path;
 
     }
     public static void main(String[] args)
@@ -56,6 +64,8 @@ public class Algorithm
                 });
         Node[] nodes = {six, seven, five};
         Algorithm alg = new Algorithm(five, nodes);
-        alg.algorithm(six);
+
+        ArrayList<Node> answer = alg.algorithm(seven);
+        answer.forEach(n -> System.out.print(n));
     }
 }
