@@ -28,6 +28,7 @@ public class HelloApplication extends Application {
 
     public static void main(String[] args) {
         launch();
+
     }
 
     public static Location grabLocation(String name) {return locations.get(name);}

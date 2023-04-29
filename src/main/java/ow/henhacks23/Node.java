@@ -2,39 +2,39 @@ package ow.henhacks23;
 
 public class Node {
 
-    public String name;
 
-    public boolean visited;
-    public int distance = 100; // == Value
+    public byte visited = 0;
+    public int value = 1000; // == Value
+    public Connection connections[];
 
 
-
-    public Node(String newName, int newDistance) {
-        this.name = newName;
-        this.distance = newDistance;
+    public Node(Connection[] connections)
+    {
+        this.connections = connections;
     }
 
-
-    public String getName() {
-        return name;
+    public Node()
+    {
+        connections = null;
     }
-    public boolean getVisited() {
-        return visited;
-    }
-
-    public int getDistance() {
-        return distance;
-    }
-
-    public void setName(String newName) {
-        this.name = newName;
-    }
-
-    public void setVisited(boolean hasVisited) {
-        this.visited = hasVisited;
-    }
-
-    public void setDistance(int newDistance) {
-        this.distance = newDistance;
+    public Node lookAtConnections()
+    {
+        Node min = null;
+        if (connections != null)
+            for (Connection con : connections)
+            {
+                if (con.node.visited == 0)
+                {
+                    if (con.node.value > value + con.distance)
+                    {
+                        con.node.value = value + con.distance;
+                    }
+                    if (min == null || min.value > con.node.value)
+                    {
+                        min = con.node;
+                    }
+                }
+        }
+        return min;
     }
 }
