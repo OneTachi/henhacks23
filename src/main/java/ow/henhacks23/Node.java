@@ -1,14 +1,17 @@
 package ow.henhacks23;
 
+import java.util.Hashtable;
+
 public class Node {
 
     public String name;
     public boolean visited;
     public int distance;
+    public Hashtable connections;
 
-    public Node(String newName, int newDistance) {
+    public Node(String newName, Hashtable connections) {
         this.name = newName;
-        this.distance = newDistance;
+        this.connections = connections;
     }
     public String getName() {
         return name;

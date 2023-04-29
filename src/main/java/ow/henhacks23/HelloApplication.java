@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 import java.io.IOException;
 
+import java.util.Hashtable;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException
@@ -23,6 +24,7 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
+        Node smith = new Node("Smith", {"Gore", 1, })
         launch();
     }
 }
