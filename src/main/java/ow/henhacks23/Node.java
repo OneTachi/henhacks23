@@ -3,13 +3,18 @@ package ow.henhacks23;
 public class Node {
 
     public String name;
+
     public boolean visited;
-    public int distance;
+    public int distance = 100; // == Value
+
+
 
     public Node(String newName, int newDistance) {
         this.name = newName;
         this.distance = newDistance;
     }
+
+
     public String getName() {
         return name;
     }
