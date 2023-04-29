@@ -19,4 +19,9 @@ public class Location
     {
         setName(name);
     }
+
+    public Location (Object position)
+    {
+        setPosition(position);
+    }
 }
