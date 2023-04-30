@@ -9,29 +9,16 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.shape.Line?>
+
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="ow.henhacks23.HelloController">
   <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="0.0"/>
+    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
   </padding>
   <Label fx:id="searchText" text=""/>
-  <ImageView fx:id="imageView" translateZ="0"/>
+  <ImageView fx:id="imageView"/>
   <TextField alignment="BOTTOM_CENTER" text="Search for a Hall Here!" fx:id="searchBox" onAction="#onSearch"
   maxWidth="500"
   maxHeight="500"/>
-  <Line startX="0" startY="0" endX="100" endY="100" visible="false" fx:id="lerner_purnell"/>
-  <Line startX="0" startY="0" endX="100" endY="100" visible="false" fx:id="purnell_bottomRoad"/>
-  <Line startX="0" startY="0" endX="100" endY="100" visible="false" fx:id="purnell_smith"/>
-  <Line startX="0" startY="0" endX="100" endY="100" visible="false" fx:id="purnell_centerArea"/>
-  <Line startX="0" startY="0" endX="100" endY="100" visible="false" fx:id="bottomRoad_smith"/>
-  <Line startX="0" startY="0" endX="100" endY="100" visible="false" fx:id="bottomRoad_rightRoad"/>
-  <Line startX="0" startY="0" endX="100" endY="100" visible="false" fx:id="smith_gore"/>
-  <Line startX="0" startY="0" endX="100" endY="100" visible="false" fx:id="smith_kirkbride"/>
-  <Line startX="0" startY="0" endX="100" endY="100" visible="false" fx:id="smith_centerArea"/>
-  <Line startX="0" startY="0" endX="100" endY="100" visible="false" fx:id="centerArea_ewing"/>
-  <Line startX="0" startY="0" endX="100" endY="100" visible="false" fx:id="centerArea_kirkbride"/>
-  <Line startX="0" startY="0" endX="100" endY="100" visible="false" fx:id="topRoad_rightRoad"/>
-  <Line startX="0" startY="0" endX="100" endY="100" visible="false" fx:id="topRoad_trabantRoad"/>
-  <Line startX="0" startY="0" endX="100" endY="100" visible="false" fx:id="topRoad_kirkbride"/>
-  <Line startX="0" startY="0" endX="100" endY="100" visible="false" fx:id="rightRoad_gore"/>
+  <Line endX="100" endY="100" visible="false" fx:id="line"/>
 </VBox>

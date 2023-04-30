@@ -2,7 +2,8 @@ package ow.henhacks23;
 
 public class Node
 {
-
+    int x;
+    int y;
     public Node prev = null;
     public String name;
 
@@ -11,15 +12,21 @@ public class Node
     public Connection connections[];
 
 
-    public Node(Connection[] connections, String name)
+    public Node(Connection[] connections)
     {
         this.connections = connections;
-        this.name = name;
     }
 
     public Node()
     {
         connections = null;
+    }
+
+    public Node(Connection[] connections, int x, int y)
+    {
+        this.connections = connections;
+        this.x = x;
+        this.y = y;
     }
 
     public Node lookAtConnections()

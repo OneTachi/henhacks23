@@ -18,9 +18,10 @@ public class Location
     public Location (String name, int xPosition, int yPosition)
     {
         setName(name);
-        setXPosition(xPosition);
-        setYPosition(yPosition);
-        this.node = new Node(new Connection[] {}, name);
+
+        this.node = new Node(new Connection[] {});
+        getNode().x = xPosition;
+        getNode().y = yPosition;
     }
 
     public Location (String name)
