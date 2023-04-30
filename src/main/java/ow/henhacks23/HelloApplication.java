@@ -17,24 +17,30 @@ import java.util.List;
 
 public class HelloApplication extends Application {
     static HashMap<String, Location> locations = new HashMap<String, Location>();
+    static Node[] net;
     @Override
     public void start(Stage stage) throws IOException
     {
+        //Is this ineffient? Yes. Do we have time and brainpower, no lol
+
         Location smith = new Location("Smith", 0,0);
         Location purnell = new Location("Purnell", 0,0);
         Location lerner = new Location("Lerner", 0,0);
         Location ewing = new Location("EWing", 0,0);
         Location kirkbride = new Location("Kirkbride", 0,0);
         Location gore = new Location("Gore", 0,0);
+        Node rightRoad = new Node(new Connection[] {});
+        Node topRoad = new Node(new Connection[] {});
+        Node trabantRoad = new Node(new Connection[] {});
+        net = new Node[]{smith.getNode(), purnell.getNode(), lerner.getNode(), ewing.getNode(), kirkbride.getNode(),
+        gore.getNode(), rightRoad, topRoad, trabantRoad};
         locations.put("smith", smith);
         locations.put("purnell", purnell);
         locations.put("lerner", lerner);
         locations.put("ewing", ewing);
         locations.put("kirkbride", kirkbride);
         locations.put("gore", gore);
-        Node rightRoad = new Node(new Connection[] {});
-        Node topRoad = new Node(new Connection[] {});
-        Node trabantRoad = new Node(new Connection[] {});
+
         Node centerArea = new Node(new Connection[]
                 {
                         new Connection(ewing.getNode(), 1),
@@ -98,7 +104,7 @@ public class HelloApplication extends Application {
                         new Connection(smith.getNode(), 1),
                         new Connection(rightRoad, 1),
                 };
-        setupLocations();
+        //setupLocations();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Hello!");

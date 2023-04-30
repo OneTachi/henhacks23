@@ -26,6 +26,8 @@ public class HelloController implements Initializable
     @FXML
     private ImageView imageView;
 
+    Location data = null;
+
     @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
@@ -42,7 +44,19 @@ public class HelloController implements Initializable
             fade.setOnFinished(n -> { searchText.setText("");});
             fade.play();
         }
-        else { searchBox.setText(location.getName());}
+        else
+        {
+            if (data == null)
+            {
+                data = location;
+            }
+            else
+            {
+                Algorithm alg = new Algorithm(data.getNode(), HelloApplication.net);
+                // Draw
+                data = null;
+            }
+        }
     }
 
     @FXML
