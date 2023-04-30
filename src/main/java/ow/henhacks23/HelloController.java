@@ -65,7 +65,7 @@ public class HelloController implements Initializable
         File file = new File("src/main/java/ow/henhacks23/proto.png");
         Image image = new Image(file.toURI().toString());
         imageView.setImage(image);
-        //imageView.setFitHeight(300);
-        //imageView.setFitWidth(300);
+        imageView.setFitHeight(200);
+        imageView.setFitWidth(200);
     }
 }

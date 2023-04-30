@@ -2,8 +2,10 @@ package ow.henhacks23;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -18,6 +20,84 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException
     {
+        Location smith = new Location("Smith", 0,0);
+        Location purnell = new Location("Purnell", 0,0);
+        Location lerner = new Location("Lerner", 0,0);
+        Location ewing = new Location("EWing", 0,0);
+        Location kirkbride = new Location("Kirkbride", 0,0);
+        Location gore = new Location("Gore", 0,0);
+        locations.put("smith", smith);
+        locations.put("purnell", purnell);
+        locations.put("lerner", lerner);
+        locations.put("ewing", ewing);
+        locations.put("kirkbride", kirkbride);
+        locations.put("gore", gore);
+        Node rightRoad = new Node(new Connection[] {});
+        Node topRoad = new Node(new Connection[] {});
+        Node trabantRoad = new Node(new Connection[] {});
+        Node centerArea = new Node(new Connection[]
+                {
+                        new Connection(ewing.getNode(), 1),
+                        new Connection(purnell.getNode(), 1),
+                        new Connection(smith.getNode(), 1),
+                        new Connection(kirkbride.getNode(), 1),
+                });
+        Node bottomRoad = new Node(new Connection[]
+                {
+                        new Connection(smith.getNode(), 1),
+                        new Connection(purnell.getNode(), 1),
+                        new Connection(rightRoad, 1),
+                });
+        rightRoad.connections = new Connection[]
+                {
+                        new Connection(gore.getNode(), 1),
+                        new Connection(bottomRoad, 1),
+                        new Connection(topRoad, 2),
+                };
+        topRoad.connections = new Connection[]
+                {
+                        new Connection(kirkbride.getNode(), 1),
+                        new Connection(trabantRoad, 2),
+                        new Connection(rightRoad, 2),
+                };
+        trabantRoad.connections = new Connection[]
+                {
+                        new Connection(topRoad, 2),
+                };
+        smith.getNode().connections = new Connection[]
+        {
+                new Connection(gore.getNode(), 1),
+                new Connection(bottomRoad, 1),
+                new Connection(purnell.getNode(), 1),
+                new Connection(centerArea, 1),
+                new Connection(kirkbride.getNode(), 1),
+        };
+        kirkbride.getNode().connections = new Connection[]
+                {
+                        new Connection(smith.getNode(), 1),
+                        new Connection(centerArea, 1),
+                        new Connection(topRoad, 1),
+                };
+        ewing.getNode().connections = new Connection[]
+                {
+                        new Connection(centerArea, 1),
+                };
+        purnell.getNode().connections = new Connection[]
+                {
+                        new Connection(smith.getNode(), 1),
+                        new Connection(lerner.getNode(), 1),
+                        new Connection(centerArea, 1),
+                        new Connection(bottomRoad, 1),
+                };
+        lerner.getNode().connections = new Connection[]
+                {
+                        new Connection(purnell.getNode(), 1),
+                };
+        gore.getNode().connections = new Connection[]
+                {
+                        new Connection(smith.getNode(), 1),
+                        new Connection(rightRoad, 1),
+                };
         setupLocations();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
@@ -28,7 +108,6 @@ public class HelloApplication extends Application {
 
     public static void main(String[] args) {
         launch();
-
     }
 
     public static Location grabLocation(String name) {return locations.get(name);}

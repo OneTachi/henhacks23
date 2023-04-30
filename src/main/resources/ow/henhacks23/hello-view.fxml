@@ -14,7 +14,7 @@
     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
   </padding>
   <Label fx:id="searchText" text=""/>
-  <ImageView fx:id="imageView"/>
+  <ImageView fx:id="imageView" translateZ="0"/>
   <TextField alignment="BOTTOM_CENTER" text="Search for a Hall Here!" fx:id="searchBox" onAction="#onSearch"
   maxWidth="500"
   maxHeight="500"/>
