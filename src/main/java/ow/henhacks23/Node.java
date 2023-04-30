@@ -2,7 +2,8 @@ package ow.henhacks23;
 
 public class Node
 {
-
+    int x;
+    int y;
     public Node prev = null;
 
     public byte visited = 0;
@@ -18,6 +19,13 @@ public class Node
     public Node()
     {
         connections = null;
+    }
+
+    public Node(Connection[] connections, int x, int y)
+    {
+        this.connections = connections;
+        this.x = x;
+        this.y = y;
     }
 
     public Node lookAtConnections()
