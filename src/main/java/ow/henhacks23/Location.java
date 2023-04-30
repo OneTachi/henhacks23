@@ -19,7 +19,7 @@ public class Location
     {
         setName(name);
 
-        this.node = new Node(new Connection[] {});
+        this.node = new Node(new Connection[] {}, name);
         getNode().x = xPosition;
         getNode().y = yPosition;
     }

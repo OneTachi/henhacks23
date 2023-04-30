@@ -41,9 +41,9 @@ public class HelloApplication extends Application {
         Location ewing = new Location("EWing", 0,0);
         Location kirkbride = new Location("Kirkbride", 30,0);
         Location gore = new Location("Gore", 0,0);
-        Node rightRoad = new Node(new Connection[] {}, 30, 30);
-        Node topRoad = new Node(new Connection[] {}, 46, 46);
-        Node trabantRoad = new Node(new Connection[] {}, 95, 433);
+        Node rightRoad = new Node(new Connection[] {}, "rightRoad");
+        Node topRoad = new Node(new Connection[] {}, "topRoad");
+        Node trabantRoad = new Node(new Connection[] {}, "trabantRoad");
         net = new Node[]{smith.getNode(), purnell.getNode(), lerner.getNode(), ewing.getNode(), kirkbride.getNode(),
         gore.getNode(), rightRoad, topRoad, trabantRoad};
         locations.put("smith", smith);
@@ -59,13 +59,13 @@ public class HelloApplication extends Application {
                         new Connection(purnell.getNode(), 1),
                         new Connection(smith.getNode(), 1),
                         new Connection(kirkbride.getNode(), 1),
-                }, 100, 100);
+                }, "centerArea");
         Node bottomRoad = new Node(new Connection[]
                 {
                         new Connection(smith.getNode(), 1),
                         new Connection(purnell.getNode(), 1),
                         new Connection(rightRoad, 1),
-                }, 200, 150);
+                }, "bottomRoad");
         rightRoad.connections = new Connection[]
                 {
                         new Connection(gore.getNode(), 1),
@@ -129,6 +129,52 @@ public class HelloApplication extends Application {
 
         StackPane paneBox = new StackPane(box);
         StackPane lines = new StackPane();
+
+        Line purnelltosmith = new Line(0,0,70,0);
+        purnelltosmith.translateXProperty().set(-260);
+        purnelltosmith.translateYProperty().set(-50);
+        Line smithtocenterArea = new Line(0,0,35,5);
+        smithtocenterArea.translateXProperty().set(-245);
+        smithtocenterArea.translateYProperty().set(-60);
+        Line ewingtocenterArea = new Line(0,0,-20,-25);
+        ewingtocenterArea.translateXProperty().set(-265);
+        ewingtocenterArea.translateYProperty().set(-75);
+        Line purnelltoCenterArea = new Line(0,0,30,-10);
+        purnelltoCenterArea.translateXProperty().set(-275);
+        purnelltoCenterArea.translateYProperty().set(-60);
+        Line kirkbridetoCenterArea = new Line(0,0,40,-15);
+        kirkbridetoCenterArea.translateXProperty().set(-245);
+        kirkbridetoCenterArea.translateYProperty().set(-70);
+        Line smithtokirkbride = new Line(0,0,0,20);
+        smithtokirkbride.translateXProperty().set(-220);
+        smithtokirkbride.translateYProperty().set(-70);
+        Line smithtogore = new Line(0,0,70,-5);
+        smithtogore.translateXProperty().set(-180);
+        smithtogore.translateYProperty().set(-50);
+        Line purnelltoBottomRoad = new Line(0,0,70,20);
+        purnelltoBottomRoad.translateXProperty().set(-260);
+        purnelltoBottomRoad.translateYProperty().set(-40);
+        Line purnelltolerner = new Line(0,0,-25,-5);
+        purnelltolerner.translateXProperty().set(-330);
+        purnelltolerner.translateYProperty().set(-50);
+        Line smithtoBottomRoad = new Line(0,0,0,15);
+        smithtoBottomRoad.translateXProperty().set(-220);
+        smithtoBottomRoad.translateYProperty().set(-35);
+        Line bottomRoadtoRightRoad = new Line(0,0,-40,5);
+        bottomRoadtoRightRoad.translateXProperty().set(-200);
+        bottomRoadtoRightRoad.translateYProperty().set(-32);
+        Line goretoRightRoad = new Line(0,0,-40,10);
+        goretoRightRoad.translateXProperty().set(-160);
+        goretoRightRoad.translateYProperty().set(-45);
+        Line rightRoadtoTopRoad = new Line(0,0,5,70);
+        rightRoadtoTopRoad.translateXProperty().set(-185);
+        rightRoadtoTopRoad.translateYProperty().set(-67);
+        Line kirkbridetoTopRoad = new Line(0,0,-15,15);
+        kirkbridetoTopRoad.translateXProperty().set(-195);
+        kirkbridetoTopRoad.translateYProperty().set(-95);
+        Line topRoadtoTrabantRoad = new Line(0,0,0,25);
+        topRoadtoTrabantRoad.translateXProperty().set(-187);
+        topRoadtoTrabantRoad.translateYProperty().set(-110);
         searchText.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
@@ -155,9 +201,52 @@ public class HelloApplication extends Application {
                         // Draw
                         for (int z = 0; z < drawPath.size() - 1; z++)
                         {
-                            Line line = new Line(drawPath.get(z).x, drawPath.get(z).y, ((drawPath.get(z+1).x + drawPath.get(z).x)/2), ((drawPath.get(z+1).y) + drawPath.get(z).y)/2);
-                            System.out.println(line);
-                            lines.getChildren().add(line);
+                            if ((Objects.equals(drawPath.get(z).name, "Gore") && Objects.equals(drawPath.get(z + 1).name, "Smith")) || (Objects.equals(drawPath.get(z).name, "Smith") && Objects.equals(drawPath.get(z + 1).name, "Gore"))) {
+                                smithtogore.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "Purnell") && Objects.equals(drawPath.get(z + 1).name, "Smith")) || (Objects.equals(drawPath.get(z).name, "Smith") && Objects.equals(drawPath.get(z + 1).name, "Purnell"))) {
+                                purnelltosmith.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "EWing") && Objects.equals(drawPath.get(z + 1).name, "centerArea")) || (Objects.equals(drawPath.get(z).name, "centerArea") && Objects.equals(drawPath.get(z + 1).name, "EWing"))) {
+                                ewingtocenterArea.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "centerArea") && Objects.equals(drawPath.get(z + 1).name, "Smith")) || (Objects.equals(drawPath.get(z).name, "Smith") && Objects.equals(drawPath.get(z + 1).name, "centerArea"))) {
+                                smithtocenterArea.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "Purnell") && Objects.equals(drawPath.get(z + 1).name, "centerArea")) || (Objects.equals(drawPath.get(z).name, "centerArea") && Objects.equals(drawPath.get(z + 1).name, "Purnell"))) {
+                                purnelltoCenterArea.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "Kirkbride") && Objects.equals(drawPath.get(z + 1).name, "centerArea")) || (Objects.equals(drawPath.get(z).name, "centerArea") && Objects.equals(drawPath.get(z + 1).name, "Kirkbride"))) {
+                                kirkbridetoCenterArea.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "Kirkbride") && Objects.equals(drawPath.get(z + 1).name, "Smith")) || (Objects.equals(drawPath.get(z).name, "Smith") && Objects.equals(drawPath.get(z + 1).name, "Kirkbride"))) {
+                                smithtokirkbride.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "Purnell") && Objects.equals(drawPath.get(z + 1).name, "bottomRoad")) || (Objects.equals(drawPath.get(z).name, "bottomRoad") && Objects.equals(drawPath.get(z + 1).name, "Purnell"))) {
+                                purnelltoBottomRoad.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "Purnell") && Objects.equals(drawPath.get(z + 1).name, "Lerner")) || (Objects.equals(drawPath.get(z).name, "Lerner") && Objects.equals(drawPath.get(z + 1).name, "Purnell"))) {
+                                purnelltolerner.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "Smith") && Objects.equals(drawPath.get(z + 1).name, "bottomRoad")) || (Objects.equals(drawPath.get(z).name, "bottomRoad") && Objects.equals(drawPath.get(z + 1).name, "Smith"))) {
+                                smithtoBottomRoad.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "bottomRoad") && Objects.equals(drawPath.get(z + 1).name, "rightRoad")) || (Objects.equals(drawPath.get(z).name, "rightRoad") && Objects.equals(drawPath.get(z + 1).name, "bottomRoad"))) {
+                                bottomRoadtoRightRoad.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "Gore") && Objects.equals(drawPath.get(z + 1).name, "rightRoad")) || (Objects.equals(drawPath.get(z).name, "rightRoad") && Objects.equals(drawPath.get(z + 1).name, "Gore"))) {
+                                goretoRightRoad.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "rightRoad") && Objects.equals(drawPath.get(z + 1).name, "topRoad")) || (Objects.equals(drawPath.get(z).name, "topRoad") && Objects.equals(drawPath.get(z + 1).name, "rightRoad"))) {
+                                rightRoadtoTopRoad.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "Kirkbride") && Objects.equals(drawPath.get(z + 1).name, "topRoad")) || (Objects.equals(drawPath.get(z).name, "topRoad") && Objects.equals(drawPath.get(z + 1).name, "Kirkbride"))) {
+                                kirkbridetoTopRoad.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "topRoad") && Objects.equals(drawPath.get(z + 1).name, "trabantRoad")) || (Objects.equals(drawPath.get(z).name, "trabantRoad") && Objects.equals(drawPath.get(z + 1).name, "topRoad"))) {
+                                topRoadtoTrabantRoad.setVisible(true);
+                            }
+
 
                         }
                         lines.setVisible(true);
@@ -175,9 +264,38 @@ public class HelloApplication extends Application {
         box.getChildren().add(view);
         box.getChildren().add(searchText);
         box.setAlignment(Pos.CENTER);
-        lines.getChildren().add(new Line(0,0,70,0));
-        lines.translateXProperty().set(-260);
-        lines.translateYProperty().set(-50);
+        lines.getChildren().add(purnelltosmith);
+        lines.getChildren().add(ewingtocenterArea);
+        lines.getChildren().add(smithtocenterArea);
+        lines.getChildren().add(purnelltoCenterArea);
+        lines.getChildren().add(kirkbridetoCenterArea);
+        lines.getChildren().add(smithtokirkbride);
+        lines.getChildren().add(smithtogore);
+        lines.getChildren().add(purnelltoBottomRoad);
+        lines.getChildren().add(purnelltolerner);
+        lines.getChildren().add(smithtoBottomRoad);
+        lines.getChildren().add(bottomRoadtoRightRoad);
+        lines.getChildren().add(goretoRightRoad);
+        lines.getChildren().add(rightRoadtoTopRoad);
+        lines.getChildren().add(kirkbridetoTopRoad);
+        lines.getChildren().add(topRoadtoTrabantRoad);
+        purnelltosmith.setVisible(false);
+        ewingtocenterArea.setVisible(false);
+        smithtocenterArea.setVisible(false);
+        purnelltoCenterArea.setVisible(false);
+        kirkbridetoCenterArea.setVisible(false);
+        smithtokirkbride.setVisible(false);
+        smithtogore.setVisible(false);
+        purnelltoBottomRoad.setVisible(false);
+        purnelltolerner.setVisible(false);
+        smithtoBottomRoad.setVisible(false);
+        goretoRightRoad.setVisible(false);
+        rightRoadtoTopRoad.setVisible(false);
+        kirkbridetoTopRoad.setVisible(false);
+        topRoadtoTrabantRoad.setVisible(false);
+        bottomRoadtoRightRoad.setVisible(false);
+
+
         main.getChildren().addAll(paneBox, lines);
         Scene scene = new Scene(main, 700 , 550);
         stage.setTitle("UD GPS");

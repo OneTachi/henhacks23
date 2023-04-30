@@ -22,11 +22,10 @@ public class Node
         connections = null;
     }
 
-    public Node(Connection[] connections, int x, int y)
+    public Node(Connection[] connections, String name)
     {
         this.connections = connections;
-        this.x = x;
-        this.y = y;
+        this.name = name;
     }
 
     public Node lookAtConnections()
