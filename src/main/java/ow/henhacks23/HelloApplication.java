@@ -41,9 +41,9 @@ public class HelloApplication extends Application {
         Location ewing = new Location("EWing", 0,0);
         Location kirkbride = new Location("Kirkbride", 30,0);
         Location gore = new Location("Gore", 0,0);
-        Node rightRoad = new Node(new Connection[] {}, 30, 30);
-        Node topRoad = new Node(new Connection[] {}, 46, 46);
-        Node trabantRoad = new Node(new Connection[] {}, 95, 433);
+        Node rightRoad = new Node(new Connection[] {}, "rightRoad");
+        Node topRoad = new Node(new Connection[] {}, "topRoad");
+        Node trabantRoad = new Node(new Connection[] {}, "trabantRoad");
         net = new Node[]{smith.getNode(), purnell.getNode(), lerner.getNode(), ewing.getNode(), kirkbride.getNode(),
         gore.getNode(), rightRoad, topRoad, trabantRoad};
         locations.put("smith", smith);
@@ -59,13 +59,13 @@ public class HelloApplication extends Application {
                         new Connection(purnell.getNode(), 1),
                         new Connection(smith.getNode(), 1),
                         new Connection(kirkbride.getNode(), 1),
-                }, 100, 100);
+                }, "centerArea");
         Node bottomRoad = new Node(new Connection[]
                 {
                         new Connection(smith.getNode(), 1),
                         new Connection(purnell.getNode(), 1),
                         new Connection(rightRoad, 1),
-                }, 200, 150);
+                }, "bottomRoad");
         rightRoad.connections = new Connection[]
                 {
                         new Connection(gore.getNode(), 1),
@@ -129,52 +129,7 @@ public class HelloApplication extends Application {
 
         StackPane paneBox = new StackPane(box);
         StackPane lines = new StackPane();
-        searchText.setOnAction(new EventHandler<ActionEvent>()
-        {
-            @Override
-            public void handle(ActionEvent event)
-            {
-                Location location = HelloApplication.grabLocation(searchText.getText());
-                if (location == null)
-                {
-                    searchText.setText("Please retype the name of your hall!");
-                    PauseTransition fade = new PauseTransition(Duration.seconds(5));
-                    fade.setOnFinished(n -> { searchText.setText("");});
-                    fade.play();
-                }
-                else
-                {
-                    if (data == null)
-                    {
-                        data = location;
-                    }
-                    else
-                    {
-                        Algorithm alg = new Algorithm(data.getNode(), HelloApplication.net);
-                        ArrayList<Node> drawPath = alg.algorithm(location.getNode());
-                        // Draw
-                        for (int z = 0; z < drawPath.size() - 1; z++)
-                        {
-                            Line line = new Line(drawPath.get(z).x, drawPath.get(z).y, ((drawPath.get(z+1).x + drawPath.get(z).x)/2), ((drawPath.get(z+1).y) + drawPath.get(z).y)/2);
-                            System.out.println(line);
-                            lines.getChildren().add(line);
 
-                        }
-                        lines.setVisible(true);
-                        data = null;
-                    }
-                }
-            }
-        });
-
-        File file = new File("src/main/java/ow/henhacks23/map.png");
-        Image image = new Image(file.toURI().toString());
-        ImageView view = new ImageView(image);
-        view.setFitHeight(550);
-        view.setFitWidth(900);
-        box.getChildren().add(view);
-        box.getChildren().add(searchText);
-        box.setAlignment(Pos.CENTER);
         Line purnelltosmith = new Line(0,0,70,0);
         purnelltosmith.translateXProperty().set(-260);
         purnelltosmith.translateYProperty().set(-50);
@@ -220,6 +175,54 @@ public class HelloApplication extends Application {
         Line topRoadtoTrabantRoad = new Line(0,0,0,25);
         topRoadtoTrabantRoad.translateXProperty().set(-187);
         topRoadtoTrabantRoad.translateYProperty().set(-110);
+        searchText.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                Location location = HelloApplication.grabLocation(searchText.getText());
+                if (location == null)
+                {
+                    searchText.setText("Please retype the name of your hall!");
+                    PauseTransition fade = new PauseTransition(Duration.seconds(5));
+                    fade.setOnFinished(n -> { searchText.setText("");});
+                    fade.play();
+                }
+                else
+                {
+                    if (data == null)
+                    {
+                        data = location;
+                    }
+                    else
+                    {
+                        Algorithm alg = new Algorithm(data.getNode(), HelloApplication.net);
+                        ArrayList<Node> drawPath = alg.algorithm(location.getNode());
+                        // Draw
+                        for (int z = 0; z < drawPath.size() - 1; z++)
+                        {
+                            if ((Objects.equals(drawPath.get(z).name, "Gore") && Objects.equals(drawPath.get(z + 1).name, "Smith")) || (Objects.equals(drawPath.get(z).name, "Smith") && Objects.equals(drawPath.get(z + 1).name, "Gore"))) {
+                                smithtogore.setVisible(true);
+                                System.out.println("It worked");
+                            }
+                            System.out.println("ToString:" + drawPath.get(z).toString());
+
+                        }
+                        lines.setVisible(true);
+                        data = null;
+                    }
+                }
+            }
+        });
+
+        File file = new File("src/main/java/ow/henhacks23/map.png");
+        Image image = new Image(file.toURI().toString());
+        ImageView view = new ImageView(image);
+        view.setFitHeight(550);
+        view.setFitWidth(900);
+        box.getChildren().add(view);
+        box.getChildren().add(searchText);
+        box.setAlignment(Pos.CENTER);
         lines.getChildren().add(purnelltosmith);
         lines.getChildren().add(ewingtocenterArea);
         lines.getChildren().add(smithtocenterArea);
