@@ -1,5 +1,10 @@
 package ow.henhacks23;
-
+//
+// WILL BE DELETED - NOT NEEDED
+//
+// We used this class to create different locations: halls and soon dorms. However, every location
+// has a node and that node has a name so we do not need the location class because it is redundant
+//
 public class Location
 {
     private String name;

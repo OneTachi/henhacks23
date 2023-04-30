@@ -17,7 +17,13 @@ import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
+//
+// WILL BE DELETED - NOT NEEDED
+//
+// We used this class on previous updates to create our search box, images and text. However,
+// we found out that creating lines using FXML would be very difficult, so we made it so the
+// search box, text, images, and lines are located all in HelloApplication.
+//
 public class HelloController implements Initializable
 {
     @FXML
