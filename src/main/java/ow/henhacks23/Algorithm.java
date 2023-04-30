@@ -5,6 +5,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
+/**
+ * Algorithm.java
+ * HenHacks23
+ * OWL
+ * 4/30/23
+ *
+ * Calculates the shortest path of a give network of nodes
+ */
 public class Algorithm
 {
     Node startingNode;
@@ -16,13 +24,21 @@ public class Algorithm
         this.network = new HashSet<>(Arrays.stream(network).toList());
     }
 
+    /**
+     * Calculates path using Djikstra's Algorithm
+     * @param endpoint The user's desired end location
+     * @return The path from the end location to the user's current location
+     */
     public ArrayList<Node> algorithm(Node endpoint)
     {
+        //Using a Hashset for unvisited nodes. LATER: use different data structure, cannot pull random
+        //element
         HashSet<Node> net = new HashSet<>(network);
         startingNode.value = 0;
         Node lookAt = startingNode;
         Node temp;
 
+        //Algorithm keeps running till there all nodes visited
         while (!(net.isEmpty()))
         {
             temp = lookAt.lookAtConnections();
@@ -40,6 +56,7 @@ public class Algorithm
 
         }
 
+        //Returning path
         ArrayList<Node> path = new ArrayList<Node>();
         Node curr = endpoint;
         while (curr != null)
@@ -50,6 +67,7 @@ public class Algorithm
         return path;
 
     }
+    //Used for testing
     public static void main(String[] args)
     {
 //        Node seven = new Node();

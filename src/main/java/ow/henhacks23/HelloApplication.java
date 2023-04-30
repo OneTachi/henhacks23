@@ -27,15 +27,35 @@ import java.util.*;
 
 import java.io.IOException;
 
+
+/**
+ * HelloApplication.java
+ * HenHacks23
+ * OWL
+ * 4/30/23
+ *
+ * Renders images onto the screen
+ */
 public class HelloApplication extends Application {
+    //Network of nodes, should be changed in the future to only use Nodes
     static HashMap<String, Location> locations = new HashMap<String, Location>();
     static Node[] net;
     Location data = null;
+
+    /**
+     * Creates network and displays control objects
+     * @param stage the primary stage for this application, onto which
+     * the application scene can be set.
+     * Applications may create other stages, if needed, but they will not be
+     * primary stages.
+     * @throws IOException
+     */
     @Override
     public void start(Stage stage) throws IOException
     {
         //Is this ineffient? Yes. Do we have time and brainpower, no lol
 
+        // Creating Network
         Location smith = new Location("Smith", -440,90);
         Location purnell = new Location("Purnell", -600,100);
         Location lerner = new Location("Lerner", 0,0);
@@ -120,6 +140,8 @@ public class HelloApplication extends Application {
         //setupLocations();
         //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         //Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+
+        //Displaying Objects
         StackPane main = new StackPane();
 
 
@@ -131,6 +153,8 @@ public class HelloApplication extends Application {
 
         StackPane paneBox = new StackPane(box);
         StackPane lines = new StackPane();
+
+        //Setting Lines and awkard translation needs
 
         Line purnelltosmith = new Line(0,0,70,0);
         purnelltosmith.translateXProperty().set(-260);
@@ -177,12 +201,16 @@ public class HelloApplication extends Application {
         Line topRoadtoTrabantRoad = new Line(0,0,0,25);
         topRoadtoTrabantRoad.translateXProperty().set(-187);
         topRoadtoTrabantRoad.translateYProperty().set(-125);
+
+        /**
+         *
+         */
         searchText.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
             public void handle(ActionEvent event)
             {
-                Location location = HelloApplication.grabLocation(searchText.getText());
+                Location location = HelloApplication.grabLocation(searchText.getText().toLowerCase());
                 if (location == null)
                 {
                     text.setText("Hall not found! Please retype your location.");
@@ -204,6 +232,7 @@ public class HelloApplication extends Application {
                         // Draw
                         for (int z = 0; z < drawPath.size() - 1; z++)
                         {
+                            //*12 am spaghetti code*
                             if ((Objects.equals(drawPath.get(z).name, "Gore") && Objects.equals(drawPath.get(z + 1).name, "Smith")) || (Objects.equals(drawPath.get(z).name, "Smith") && Objects.equals(drawPath.get(z + 1).name, "Gore"))) {
                                 smithtogore.setVisible(true);
                             }
@@ -311,7 +340,16 @@ public class HelloApplication extends Application {
         launch();
     }
 
+    /**
+     * Getter for existence of location
+     * @param name User input for location name
+     * @return Location
+     */
     public static Location grabLocation(String name) {return locations.get(name);}
+
+    /**
+     * Not used.
+     */
     public void setupLocations()
     {
         String[] arr = {"Ewing", "Trabant", "Kirk", "Smith", "Purnell", "Lerner", "Sharp", "Gore", "Mitchell",
