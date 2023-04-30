@@ -235,7 +235,21 @@ public class HelloApplication extends Application {
         lines.getChildren().add(rightRoadtoTopRoad);
         lines.getChildren().add(kirkbridetoTopRoad);
         lines.getChildren().add(topRoadtoTrabantRoad);
-
+        purnelltosmith.setVisible(false);
+        ewingtocenterArea.setVisible(false);
+        smithtocenterArea.setVisible(false);
+        purnelltoCenterArea.setVisible(false);
+        kirkbridetoCenterArea.setVisible(false);
+        smithtokirkbride.setVisible(false);
+        smithtogore.setVisible(false);
+        purnelltoBottomRoad.setVisible(false);
+        purnelltolerner.setVisible(false);
+        smithtoBottomRoad.setVisible(false);
+        goretoRightRoad.setVisible(false);
+        rightRoadtoTopRoad.setVisible(false);
+        kirkbridetoTopRoad.setVisible(false);
+        topRoadtoTrabantRoad.setVisible(false);
+        bottomRoadtoRightRoad.setVisible(false);
 
 
         main.getChildren().addAll(paneBox, lines);
