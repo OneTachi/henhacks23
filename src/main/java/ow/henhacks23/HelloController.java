@@ -62,10 +62,10 @@ public class HelloController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        File file = new File("src/main/java/ow/henhacks23/proto.png");
+        File file = new File("src/main/java/ow/henhacks23/map.png");
         Image image = new Image(file.toURI().toString());
         imageView.setImage(image);
-        //imageView.setFitHeight(300);
-        //imageView.setFitWidth(300);
+        imageView.setFitHeight(550);
+        imageView.setFitWidth(700);
     }
 }
