@@ -18,6 +18,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -125,56 +126,57 @@ public class HelloApplication extends Application {
         VBox box = new VBox();
         box.setSpacing(20);
         TextField searchText = new TextField();
-        searchText.setText("Input your current location");
+        Text text = new Text();
+        text.setText("Input Your Current Location");
 
         StackPane paneBox = new StackPane(box);
         StackPane lines = new StackPane();
 
         Line purnelltosmith = new Line(0,0,70,0);
         purnelltosmith.translateXProperty().set(-260);
-        purnelltosmith.translateYProperty().set(-50);
+        purnelltosmith.translateYProperty().set(-65);
         Line smithtocenterArea = new Line(0,0,35,5);
         smithtocenterArea.translateXProperty().set(-245);
-        smithtocenterArea.translateYProperty().set(-60);
+        smithtocenterArea.translateYProperty().set(-75);
         Line ewingtocenterArea = new Line(0,0,-20,-25);
         ewingtocenterArea.translateXProperty().set(-265);
-        ewingtocenterArea.translateYProperty().set(-75);
+        ewingtocenterArea.translateYProperty().set(-90);
         Line purnelltoCenterArea = new Line(0,0,30,-10);
         purnelltoCenterArea.translateXProperty().set(-275);
-        purnelltoCenterArea.translateYProperty().set(-60);
+        purnelltoCenterArea.translateYProperty().set(-75);
         Line kirkbridetoCenterArea = new Line(0,0,40,-15);
         kirkbridetoCenterArea.translateXProperty().set(-245);
-        kirkbridetoCenterArea.translateYProperty().set(-70);
+        kirkbridetoCenterArea.translateYProperty().set(-85);
         Line smithtokirkbride = new Line(0,0,0,20);
         smithtokirkbride.translateXProperty().set(-220);
-        smithtokirkbride.translateYProperty().set(-70);
+        smithtokirkbride.translateYProperty().set(-85);
         Line smithtogore = new Line(0,0,70,-5);
         smithtogore.translateXProperty().set(-180);
-        smithtogore.translateYProperty().set(-50);
+        smithtogore.translateYProperty().set(-65);
         Line purnelltoBottomRoad = new Line(0,0,70,20);
         purnelltoBottomRoad.translateXProperty().set(-260);
-        purnelltoBottomRoad.translateYProperty().set(-40);
+        purnelltoBottomRoad.translateYProperty().set(-55);
         Line purnelltolerner = new Line(0,0,-25,-5);
         purnelltolerner.translateXProperty().set(-330);
-        purnelltolerner.translateYProperty().set(-50);
+        purnelltolerner.translateYProperty().set(-65);
         Line smithtoBottomRoad = new Line(0,0,0,15);
         smithtoBottomRoad.translateXProperty().set(-220);
-        smithtoBottomRoad.translateYProperty().set(-35);
+        smithtoBottomRoad.translateYProperty().set(-50);
         Line bottomRoadtoRightRoad = new Line(0,0,-40,5);
         bottomRoadtoRightRoad.translateXProperty().set(-200);
-        bottomRoadtoRightRoad.translateYProperty().set(-32);
+        bottomRoadtoRightRoad.translateYProperty().set(-47);
         Line goretoRightRoad = new Line(0,0,-40,10);
         goretoRightRoad.translateXProperty().set(-160);
-        goretoRightRoad.translateYProperty().set(-45);
+        goretoRightRoad.translateYProperty().set(-60);
         Line rightRoadtoTopRoad = new Line(0,0,5,70);
         rightRoadtoTopRoad.translateXProperty().set(-185);
-        rightRoadtoTopRoad.translateYProperty().set(-67);
+        rightRoadtoTopRoad.translateYProperty().set(-82);
         Line kirkbridetoTopRoad = new Line(0,0,-15,15);
         kirkbridetoTopRoad.translateXProperty().set(-195);
-        kirkbridetoTopRoad.translateYProperty().set(-95);
+        kirkbridetoTopRoad.translateYProperty().set(-110);
         Line topRoadtoTrabantRoad = new Line(0,0,0,25);
         topRoadtoTrabantRoad.translateXProperty().set(-187);
-        topRoadtoTrabantRoad.translateYProperty().set(-110);
+        topRoadtoTrabantRoad.translateYProperty().set(-125);
         searchText.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
@@ -183,7 +185,7 @@ public class HelloApplication extends Application {
                 Location location = HelloApplication.grabLocation(searchText.getText());
                 if (location == null)
                 {
-                    searchText.setText("Please retype the name of your hall!");
+                    text.setText("Hall not found! Please retype your location.");
                     PauseTransition fade = new PauseTransition(Duration.seconds(5));
                     fade.setOnFinished(n -> { searchText.setText("");});
                     fade.play();
@@ -193,6 +195,7 @@ public class HelloApplication extends Application {
                     if (data == null)
                     {
                         data = location;
+                        text.setText("Input your destination");
                     }
                     else
                     {
@@ -263,6 +266,7 @@ public class HelloApplication extends Application {
         view.setFitWidth(900);
         box.getChildren().add(view);
         box.getChildren().add(searchText);
+        box.getChildren().add(text);
         box.setAlignment(Pos.CENTER);
         lines.getChildren().add(purnelltosmith);
         lines.getChildren().add(ewingtocenterArea);
