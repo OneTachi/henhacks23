@@ -7,11 +7,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Line;
 import javafx.util.Duration;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -26,6 +28,8 @@ public class HelloController implements Initializable
     private Label searchText;
     @FXML
     private ImageView imageView;
+    @FXML
+    private Line line;
 
     Location data = null;
 
@@ -54,12 +58,17 @@ public class HelloController implements Initializable
             else
             {
                 Algorithm alg = new Algorithm(data.getNode(), HelloApplication.net);
-                ArrayList drawPath = alg.algorithm(location.getNode());
+                ArrayList<Node> drawPath = alg.algorithm(location.getNode());
                 // Draw
+
+
+
                 data = null;
             }
         }
     }
+
+
 
     @FXML
     protected Image getProto()
@@ -83,5 +92,7 @@ public class HelloController implements Initializable
         imageView.setImage(image);
         imageView.setFitHeight(200);
         imageView.setFitWidth(200);
+
     }
+
 }
