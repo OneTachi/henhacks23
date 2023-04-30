@@ -203,9 +203,50 @@ public class HelloApplication extends Application {
                         {
                             if ((Objects.equals(drawPath.get(z).name, "Gore") && Objects.equals(drawPath.get(z + 1).name, "Smith")) || (Objects.equals(drawPath.get(z).name, "Smith") && Objects.equals(drawPath.get(z + 1).name, "Gore"))) {
                                 smithtogore.setVisible(true);
-                                System.out.println("It worked");
                             }
-                            System.out.println("ToString:" + drawPath.get(z).toString());
+                            if ((Objects.equals(drawPath.get(z).name, "Purnell") && Objects.equals(drawPath.get(z + 1).name, "Smith")) || (Objects.equals(drawPath.get(z).name, "Smith") && Objects.equals(drawPath.get(z + 1).name, "Purnell"))) {
+                                purnelltosmith.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "EWing") && Objects.equals(drawPath.get(z + 1).name, "centerArea")) || (Objects.equals(drawPath.get(z).name, "centerArea") && Objects.equals(drawPath.get(z + 1).name, "EWing"))) {
+                                ewingtocenterArea.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "centerArea") && Objects.equals(drawPath.get(z + 1).name, "Smith")) || (Objects.equals(drawPath.get(z).name, "Smith") && Objects.equals(drawPath.get(z + 1).name, "centerArea"))) {
+                                smithtocenterArea.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "Purnell") && Objects.equals(drawPath.get(z + 1).name, "centerArea")) || (Objects.equals(drawPath.get(z).name, "centerArea") && Objects.equals(drawPath.get(z + 1).name, "Purnell"))) {
+                                purnelltoCenterArea.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "Kirkbride") && Objects.equals(drawPath.get(z + 1).name, "centerArea")) || (Objects.equals(drawPath.get(z).name, "centerArea") && Objects.equals(drawPath.get(z + 1).name, "Kirkbride"))) {
+                                kirkbridetoCenterArea.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "Kirkbride") && Objects.equals(drawPath.get(z + 1).name, "Smith")) || (Objects.equals(drawPath.get(z).name, "Smith") && Objects.equals(drawPath.get(z + 1).name, "Kirkbride"))) {
+                                smithtokirkbride.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "Purnell") && Objects.equals(drawPath.get(z + 1).name, "bottomRoad")) || (Objects.equals(drawPath.get(z).name, "bottomRoad") && Objects.equals(drawPath.get(z + 1).name, "Purnell"))) {
+                                purnelltoBottomRoad.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "Purnell") && Objects.equals(drawPath.get(z + 1).name, "Lerner")) || (Objects.equals(drawPath.get(z).name, "Lerner") && Objects.equals(drawPath.get(z + 1).name, "Purnell"))) {
+                                purnelltolerner.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "Smith") && Objects.equals(drawPath.get(z + 1).name, "bottomRoad")) || (Objects.equals(drawPath.get(z).name, "bottomRoad") && Objects.equals(drawPath.get(z + 1).name, "Smith"))) {
+                                smithtoBottomRoad.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "bottomRoad") && Objects.equals(drawPath.get(z + 1).name, "rightRoad")) || (Objects.equals(drawPath.get(z).name, "rightRoad") && Objects.equals(drawPath.get(z + 1).name, "bottomRoad"))) {
+                                bottomRoadtoRightRoad.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "Gore") && Objects.equals(drawPath.get(z + 1).name, "rightRoad")) || (Objects.equals(drawPath.get(z).name, "rightRoad") && Objects.equals(drawPath.get(z + 1).name, "Gore"))) {
+                                goretoRightRoad.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "rightRoad") && Objects.equals(drawPath.get(z + 1).name, "topRoad")) || (Objects.equals(drawPath.get(z).name, "topRoad") && Objects.equals(drawPath.get(z + 1).name, "rightRoad"))) {
+                                rightRoadtoTopRoad.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "Kirkbride") && Objects.equals(drawPath.get(z + 1).name, "topRoad")) || (Objects.equals(drawPath.get(z).name, "topRoad") && Objects.equals(drawPath.get(z + 1).name, "Kirkbride"))) {
+                                kirkbridetoTopRoad.setVisible(true);
+                            }
+                            if ((Objects.equals(drawPath.get(z).name, "topRoad") && Objects.equals(drawPath.get(z + 1).name, "trabantRoad")) || (Objects.equals(drawPath.get(z).name, "trabantRoad") && Objects.equals(drawPath.get(z + 1).name, "topRoad"))) {
+                                topRoadtoTrabantRoad.setVisible(true);
+                            }
+
 
                         }
                         lines.setVisible(true);
