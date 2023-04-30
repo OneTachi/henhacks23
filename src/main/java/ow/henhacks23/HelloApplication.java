@@ -331,7 +331,7 @@ public class HelloApplication extends Application {
 
         main.getChildren().addAll(paneBox, lines);
         Scene scene = new Scene(main, 700 , 550);
-        stage.setTitle("UD GPS");
+        stage.setTitle("UD GO");
         stage.setScene(scene);
         stage.show();
     }
