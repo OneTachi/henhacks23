@@ -4,15 +4,17 @@ public class Node
 {
 
     public Node prev = null;
+    public String name;
 
     public byte visited = 0;
     public int value = 1000; // == Value
     public Connection connections[];
 
 
-    public Node(Connection[] connections)
+    public Node(Connection[] connections, String name)
     {
         this.connections = connections;
+        this.name = name;
     }
 
     public Node()

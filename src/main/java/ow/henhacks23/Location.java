@@ -3,25 +3,28 @@ package ow.henhacks23;
 public class Location
 {
     private String name;
-    private Object position;
-    public Object getPosition() { return position; }
+    private Node node;
+    private int xPosition;
+    private int yPosition;
+    public int getXPosition() { return xPosition; }
+    public int getYPosition() { return yPosition; }
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
-    public void setPosition(Object position) { this.position = position; }
+    public void setXPosition(int position) { this.xPosition = position; }
+    public void setYPosition(int position) { this.yPosition = position; }
 
-    public Location (String name, Object position)
+    public Node getNode() {return this.node;}
+
+    public Location (String name, int xPosition, int yPosition)
     {
         setName(name);
-        setPosition(position);
+        setXPosition(xPosition);
+        setYPosition(yPosition);
+        this.node = new Node(new Connection[] {}, name);
     }
 
     public Location (String name)
     {
         setName(name);
-    }
-
-    public Location (Object position)
-    {
-        setPosition(position);
     }
 }

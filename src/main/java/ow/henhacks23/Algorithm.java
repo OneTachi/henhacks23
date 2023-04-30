@@ -2,6 +2,7 @@ package ow.henhacks23;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class Algorithm
@@ -51,21 +52,21 @@ public class Algorithm
     }
     public static void main(String[] args)
     {
-        Node seven = new Node();
-        Node six = new Node(new Connection[]
-                {
-                        new Connection(seven, 1)
-                });
-
-        Node five = new Node(new Connection[]
-                {
-                   new Connection(six, 3),
-                   new Connection(seven, 6)
-                });
-        Node[] nodes = {six, seven, five};
-        Algorithm alg = new Algorithm(five, nodes);
-
-        ArrayList<Node> answer = alg.algorithm(seven);
-        answer.forEach(n -> System.out.print(n));
+//        Node seven = new Node();
+//        Node six = new Node(new Connection[]
+//                {
+//                        new Connection(seven, 1)
+//                });
+//
+//        Node five = new Node(new Connection[]
+//                {
+//                   new Connection(six, 3),
+//                   new Connection(seven, 6)
+//                });
+//        Node[] nodes = {six, seven, five};
+//        Algorithm alg = new Algorithm(five, nodes);
+//
+//        ArrayList<Node> answer = alg.algorithm(seven);
+//        answer.forEach(n -> System.out.print(n));
     }
 }
