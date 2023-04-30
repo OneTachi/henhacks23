@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable
@@ -53,6 +54,7 @@ public class HelloController implements Initializable
             else
             {
                 Algorithm alg = new Algorithm(data.getNode(), HelloApplication.net);
+                ArrayList drawPath = alg.algorithm(location.getNode());
                 // Draw
                 data = null;
             }
